@@ -1,0 +1,63 @@
+---
+import LoaderCircle from "../Assets/Loader_Circle.astro"
+
+---
+
+<div id="title-container">
+    <h1 class="title">Clemastro</h1>
+    <div class="deco">
+        <LoaderCircle size="50%" borderSize="3px" color="#BBD7E7"/>
+    </div>
+    <div class="deco">
+        <LoaderCircle size="55%" borderSize="1px" color="#BBD7E7"/>
+    </div>
+</div>
+ 
+<style>
+    :root {
+        --title-color-g1: #89DCCB;
+        --title-color-g2: #279397;
+    }
+
+    #title-container {
+        position: relative;
+        width: 100vw;
+        height: calc(100vh - var(--nav-bar-height)*2 - var(--nav-bar-border-size)*2);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
+    }
+ 
+    .title {
+        padding-left: 0.38em;
+        text-align: center;
+        font-size: 6vw;
+        font-weight: normal;
+        font-family: 'Elounda';
+        letter-spacing: 0.38em;
+        background: linear-gradient(var(--title-color-g1), var(--title-color-g2));
+        background-clip: text;
+        filter: drop-shadow(0px 0px 5px var(--title-color-g1));
+        -webkit-text-fill-color: transparent;
+    }
+
+    @font-face {
+        font-family: 'Elounda';
+        src: url('/fonts/elounda-regular.woff2') format('woff2');
+    }
+
+    .deco {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<script>
+
+</script>

@@ -1,0 +1,74 @@
+---
+import AnimatedCircle from "../Assets/Animated_Circle.astro";
+const { borderIsTop = false } = Astro.props;
+---
+
+<div id="nav-bar" class={borderIsTop ? "border-top" : "border-bot"}>
+</div>
+
+<style>
+    :root{
+        --color-nav-bar: #11151F;
+        --color-border: #42B7A3;
+        --nav-bar-height: 65px;
+        --nav-bar-border-size: 1px;
+    }
+
+    #nav-bar{
+        width: 100vw;
+        height: var(--nav-bar-height);
+        background: var(--color-nav-bar);
+        overflow: hidden;
+    }
+
+    .border-bot{
+        border-bottom: var(--nav-bar-border-size) solid var(--color-border);
+        box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .border-top{
+        border-top: var(--nav-bar-border-size) solid var(--color-border);
+        box-shadow: 0px -2px 20px rgba(0, 0, 0, 0.8);
+    }
+
+    .square-container{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: fit-content;
+        width: fit-content;
+        animation: ty 3s infinite;
+    }
+
+    .square{
+        width: 10px;
+        height: 10px;
+        background: var(--color-border);
+        animation: tx 3s infinite;
+    }
+
+
+    @keyframes tx{
+        0%{
+            transform: translateX(0);
+        }
+        50%{
+            transform: translateX(10px);
+        }
+        100%{
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes ty{
+        0%{
+            transform: translateY(0);
+        }
+        50%{
+            transform: translateY(10px);
+        }
+        100%{
+            transform: translateY(0);
+        }
+    }
+</style>

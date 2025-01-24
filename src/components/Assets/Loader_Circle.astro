@@ -1,0 +1,132 @@
+---
+import { getRandomValue } from '../../js/mathCSS.js';
+
+const { size = '100%', borderSize = '2', color = 'white' } = Astro.props;
+
+const borderSizePx = parseFloat(borderSize) + 'px';
+
+const c1SettingsA = getRandomValue(20, 45) + 's';
+const c1SettingsR = getRandomValue(25, 40) + 's';
+const c1SettingsI = getRandomValue(0, 360) + 'deg';
+
+const c2SettingsA = getRandomValue(20, 45) + 's';
+const c2SettingsR = getRandomValue(25, 40) + 's';
+const c2SettingsI = getRandomValue(0, 360) + 'deg';
+
+const c3SettingsA = getRandomValue(20, 45) + 's';
+const c3SettingsR = getRandomValue(25, 40) + 's';
+const c3SettingsI = getRandomValue(0, 360) + 'deg';
+---
+
+<div class="animated-circle-container" style={`height: ${size}; width: ${size};`}>
+    <svg class="animated-circle" preserveAspectRatio="xMinYMin" style={`width: calc(100% - ${borderSizePx}); height: calc(100% - ${borderSizePx});`}>
+        <circle class="c1" cx="50%" cy="50%" r="50%"/>
+        <circle class="c2" cx="50%" cy="50%" r="50%"/>
+        <circle class="c3" cx="50%" cy="50%" r="50%"/>
+    </svg>
+</div>
+
+<style define:vars={{borderSize, color, c1SettingsA, c1SettingsR, c1SettingsI, c2SettingsA, c2SettingsR, c2SettingsI, c3SettingsA, c3SettingsR, c3SettingsI}}>
+    .animated-circle-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        aspect-ratio: 1 / 1;
+    }
+
+    .animated-circle {
+        overflow: visible;
+    }
+
+    circle {
+        transform-origin: center;
+        fill: none;
+        stroke: var(--color);
+        stroke-width: var(--borderSize);
+        stroke-dasharray: 300%;
+        stroke-dashoffset: 500%;
+        stroke-linecap: round;
+        filter: drop-shadow( 0px 0px 10px var(--color));
+    }
+
+    .c1 {
+        animation: animate var(--c1SettingsA) ease-in-out infinite, rotatec1 var(--c1SettingsR) ease-in-out infinite;
+    }
+
+    .c2 {
+        animation: animate var(--c2SettingsA) ease-in-out infinite, rotatec2 var(--c2SettingsR) ease-in-out reverse infinite;
+    }
+
+    .c3 {
+        animation: animate var(--c3SettingsA) ease-in-out infinite, rotatec3 var(--c3SettingsR) ease-in-out infinite;
+    }
+
+    @keyframes animate {
+        0% {
+            stroke-dashoffset: 400%;
+        }
+        50% {
+            stroke-dashoffset: 300%;
+        }
+        100% {
+            stroke-dashoffset: 400%;
+        }
+    }
+
+    @keyframes rotatec1 {
+        0% {
+            transform: rotate(var(--c1SettingsI));
+        }
+        50% {
+            transform: rotate(calc(360deg + var(--c1SettingsI)));
+        }
+        100% {
+            transform: rotate(var(--c1SettingsI));
+        }
+    }
+
+    @keyframes rotatec2 {
+        0% {
+            transform: rotate(var(--c2SettingsI));
+        }
+        50% {
+            transform: rotate(calc(360deg + var(--c2SettingsI)));
+        }
+        100% {
+            transform: rotate(var(--c2SettingsI));
+        }
+    }
+
+    @keyframes rotatec3 {
+        0% {
+            transform: rotate(var(--c3SettingsI));
+        }
+        50% {
+            transform: rotate(calc(360deg + var(--c3SettingsI)));
+        }
+        100% {
+            transform: rotate(var(--c3SettingsI));
+        }
+    }
+</style>
+
+<script>
+ function resizeAll() {
+        const containers = document.querySelectorAll('.animated-circle-container');
+        containers.forEach(container => {
+            const width = (container as HTMLElement).offsetWidth;
+            const height = (container as HTMLElement).offsetHeight;
+            if (width > height) {
+                (container as HTMLElement).style.width = height + 'px';
+            } else {
+                (container as HTMLElement).style.height = width + 'px';
+            }
+        });
+    }
+
+    // Call resize for all instances initially
+    resizeAll();
+
+    // Add event listener for window resize
+    window.addEventListener('resize', resizeAll);
+</script>
