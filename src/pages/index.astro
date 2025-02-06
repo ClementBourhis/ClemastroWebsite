@@ -1,12 +1,13 @@
 ---
 import IndexBackground from '../components/Index/Index_Background.astro';
 import NavBar from '../components/Index/Nav_Bar.astro';
+import Nav from '../components/Index/Nav.astro';
 import Title from '../components/Index/Index_Title.astro';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<NavBar />
+	<Nav />
 	<Title />
 	<div id="background" >
 		<IndexBackground />
@@ -31,4 +32,25 @@ import Layout from '../layouts/Layout.astro';
 		bottom: 0;
 		left: 0;
 	}
+
+	ul{
+		padding: 0;
+        display: flex;
+        justify-content: center;
+        width: 20%;
+        list-style: none;
+        font-family: 'Valera Round', sans-serif;
+        font-weight: bold;
+        color: var(--color-nav-bar-text);
+    }
+
+    li{
+		padding: 0.5em;
+        transition: all 0.2s ease-in-out;
+    }
+
+    li:hover {
+        cursor: pointer;
+        color: var(--color-nav-bar-text-hover);
+    }
 </style>

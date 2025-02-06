@@ -1,0 +1,19 @@
+<svg width="44" height="56" viewBox="0 0 44 56" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        .cl_white {
+            fill: white;
+            stroke: none;
+            fill-opacity: 1;
+        }
+
+        .cl_black {
+            fill: black;
+            stroke: none;
+            fill-opacity: 1;
+        }
+    </defs>
+    
+    <path d="M33.2923 11.8431L27.253 34.3817C28.0047 26.5874 30.0487 18.9705 33.2923 11.8431Z" fill="#31AEA0" fill-opacity="0.8" stroke="#40EAC8" stroke-width="0.25"/>
+    <path d="M25.4404 41.1027L19.0204 44.8109C20.7714 39.9021 18.774 34.4152 14.2317 31.7926C12.9554 31.0558 11.5423 30.5864 10.0803 30.4143L34.6689 5.82403C28.6319 16.5973 25.4529 28.7437 25.4404 41.1027Z" fill="#31AEA0" fill-opacity="0.8" stroke="#40EAC8" stroke-width="0.25"/>
+    <path d="M13.5863 32.9083C18.1422 35.5386 19.7103 41.3575 17.0976 45.9189L8.93877 50.6297L8.93846 31.6294C10.5712 31.6507 12.1709 32.0911 13.5863 32.9083Z" fill="#31AEA0" fill-opacity="0.8" stroke="#40EAC8" stroke-width="0.25"/>
+</svg>

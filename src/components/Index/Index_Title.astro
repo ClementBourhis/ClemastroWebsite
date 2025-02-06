@@ -6,7 +6,7 @@ import LoaderCircle from "../Assets/Loader_Circle.astro"
 <div id="title-container">
     <h1 class="title">Clemastro</h1>
     <div class="deco">
-        <LoaderCircle size="50%" borderSize="3px" color="#BBD7E7"/>
+        <LoaderCircle size="50%" borderSize="4px" color="#BBD7E7"/>
     </div>
     <div class="deco">
         <LoaderCircle size="55%" borderSize="1px" color="#BBD7E7"/>
@@ -44,7 +44,7 @@ import LoaderCircle from "../Assets/Loader_Circle.astro"
 
     @font-face {
         font-family: 'Elounda';
-        src: url('/fonts/elounda-regular.woff2') format('woff2');
+        src: url('./src/fonts/elounda-regular.woff2') format('woff2');
     }
 
     .deco {
@@ -55,6 +55,20 @@ import LoaderCircle from "../Assets/Loader_Circle.astro"
         display: flex;
         justify-content: center;
         align-items: center;
+    }
+
+    @media screen and (min-width: 1920px) {
+        .title {
+            font-size: 110px;
+        }
+        
+    }
+
+    @media screen and (max-aspect-ratio: 1/1) {
+        .title {
+            font-size: 10vw;
+        }
+        
     }
 </style>
 

@@ -1,0 +1,108 @@
+---
+import { Image } from 'astro:assets'
+import CrystalLogo from '../../svg/crystalLogo.svg'
+import CrystalLogoD from '../../svg/crystalLogo_darker.svg'
+import LoaderCircle from './Loader_Circle.astro'
+---
+
+<div class="menu_button">
+    <div class="loader-circle"> <LoaderCircle size="100%" borderSize="5px" color="#42BAAB"/> </div>
+    <Image class="static inactive" src={CrystalLogoD} alt="CrystalLogo"/>
+    <Image class="static menu-button-image" src={CrystalLogo} alt="CrystalLogo"/>
+</div>
+
+<style>
+    .menu_button {
+        position: relative;
+        height: 60px;
+        width: 60px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+
+    .loader-circle {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        opacity: 0;
+        transform: translate(8%, 8%);
+        transition: transform 0.1s linear 0.5s , opacity 0.5s ease-in-out;
+    }
+
+    .menu_button:hover .loader-circle {
+        transform: translate(0%, 0%);
+        opacity: 0.5;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .menu-button-image {
+        transition: all 0.2s ease-in-out;
+    }
+
+    .static {
+        position: absolute;
+        transform: translate(8%, 8%);
+        height: 70%;
+    }
+
+    .menu_button:hover .menu-button-image {
+        transform: translate(0%, 0%);
+        animation: blinker 12s linear infinite alternate;
+    }
+
+    @keyframes blinker {
+        0%{
+            opacity: 1;
+        }
+
+        15% {
+            opacity: 0.7;
+        }
+
+        25% {
+            opacity: 0.7;
+        }
+        25.1%{
+            opacity: 0;
+        }
+        25.5% {
+            opacity: 1;
+        }
+
+        35.5% {
+            opacity: 1;
+        }
+        35.6% {
+            opacity: 0;
+        }
+        36% {
+            opacity: 1;
+        }
+
+        75% {
+            opacity: 1;
+        }
+        75.1% {
+            opacity: 0;
+        }
+        75.5% {
+            opacity: 1;
+        }
+
+        85% {
+            margin-left: 0px;
+        }
+        85.1% {
+            margin-left: 3px;
+        }
+        88.7% {
+            margin-left: 3px;
+        }
+        88.8% {
+            margin-left: 0px;
+        }
+    }
+
+</style>

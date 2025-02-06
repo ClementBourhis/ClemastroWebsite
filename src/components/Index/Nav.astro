@@ -1,0 +1,44 @@
+---
+import NavBar from "./Nav_Bar.astro"
+import MenuButton from "../Assets/Menu_Button.astro"
+---
+
+<NavBar>
+    <div class="menu-button"><MenuButton /></div>
+    <ul>
+        <li><a>Illustrations</a></li>
+        <li><a>3D</a></li>
+        <li><a>Logofolio</a></li>
+    </ul>
+</NavBar>
+
+<style>
+    .menu-button {
+        position: absolute;
+        left: 0;
+    }
+
+    ul{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 0;
+        width: 20%;
+        list-style: none;
+        font-family: 'Valera Round', sans-serif;
+        font-weight: bold;
+        color: var(--color-nav-bar-text);
+        max-height: var(--nav-bar-height);
+    }
+
+    li{
+        padding-left: 10%;
+        padding-right: 10%;
+        transition: all 0.2s ease-in-out;
+    }
+
+    li:hover {
+        cursor: pointer;
+        color: var(--color-nav-bar-text-hover);
+    }
+</style>

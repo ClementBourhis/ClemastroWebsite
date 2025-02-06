@@ -1,0 +1,144 @@
+---
+import { convertValueToPx } from "../../js/css_value_converter.js";
+import { getRandomValue } from "../../js/mathCSS.js";
+
+const { size = '50px', borderSize = '2', color = 'black' } = Astro.props;
+
+function analyzeSuffix(value: string) {
+    // Vérifier si la valeur est une chaîne
+    if (typeof value !== 'string') {
+        return {
+            type: 'unknown',
+            suffix: null,
+            originalValue: value
+        };
+    }
+
+    // Utiliser une expression régulière pour extraire le suffixe
+    const match = value.match(/^(\d+(\.\d+)?)([a-zA-Z%]*)$/);
+    
+    if (match) {
+        const numberPart = match[1]; // Partie numérique
+        const suffix = match[3] || null; // Suffixe (px, %, em, etc.)
+
+        return {
+            type: suffix ? suffix : 'number', // Si suffixe, on le renvoie, sinon c'est juste un nombre
+            suffix: suffix,
+            originalValue: value,
+            number: parseFloat(numberPart) // Convertir la partie numérique
+        };
+    } else {
+        return {
+            type: 'unknown',
+            suffix: null,
+            originalValue: value
+        };
+    }
+}
+
+let rayon = '25px';
+if (analyzeSuffix(size).type !== 'unknown') {
+    const number = analyzeSuffix(size);
+    const rayonNumber = number.number ? number.number / 2 : 25;
+    rayon = rayonNumber - borderSize/2 + (number.suffix || 'px');
+}
+
+function getRandomValue(min: number, max: number) {
+			return Math.random() * (max - min) + min;
+}
+
+const c1SettingsA = getRandomValue(20, 45) + 's';
+const c1SettingsR = getRandomValue(10, 25) + 's';
+const c1SettingsI = getRandomValue(0, 360) + 'deg';
+
+const c2SettingsA = getRandomValue(20, 45) + 's';
+const c2SettingsR = getRandomValue(10, 25) + 's';
+const c2SettingsI = getRandomValue(0, 360) + 'deg';
+
+const c3SettingsA = getRandomValue(20, 45) + 's';
+const c3SettingsR = getRandomValue(10, 25) + 's';
+const c3SettingsI = getRandomValue(0, 360) + 'deg';
+
+---
+ <svg width={size} height={size} class="animated-circle">
+    <circle class="point c1" cx="50%" cy="50%" r={rayon}></circle>
+    <circle class="point c2" cx="50%" cy="50%" r={rayon}></circle>
+    <circle class="point c3" cx="50%" cy="50%" r={rayon}></circle>
+   </svg>
+
+
+<style define:vars={{ c1SettingsA, c1SettingsR, c1SettingsI, c2SettingsA, c2SettingsR, c2SettingsI, c3SettingsA, c3SettingsR, c3SettingsI }}>
+    .animated-circle {
+        overflow: visible;
+    }
+
+    .point {
+        fill: none;
+        stroke-width: 2;
+        stroke: rgb(189, 255, 227);
+        stroke-dasharray: 200;
+        stroke-dashoffset: 249;
+        transform-origin: center;
+        filter: drop-shadow( 0px 0px 10px rgba(174, 255, 242, 0.7));
+    }
+
+    .c1 {
+        animation: animate var(--c1SettingsA) ease-in-out infinite, rotatec1 var(--c1SettingsR) ease-in-out infinite;
+    }
+
+    .c2 {
+        animation: animate var(--c2SettingsA) ease-in-out infinite, rotatec2 var(--c2SettingsR) ease-in-out reverse infinite;
+    }
+
+    .c3 {
+        animation: animate var(--c3SettingsA) ease-in-out infinite, rotatec3 var(--c3SettingsR) ease-in-out infinite;
+    }
+
+    @keyframes animate {
+        0% {
+            stroke-dashoffset: 249;
+        }
+        50% {
+            stroke-dashoffset: 85;
+        }
+        100% {
+            stroke-dashoffset: 249;
+        }
+    }
+
+    @keyframes rotatec1 {
+        0% {
+            transform: rotate(var(--c1SettingsI));
+        }
+        50% {
+            transform: rotate(calc(360deg + var(--c1SettingsI)));
+        }
+        100% {
+            transform: rotate(var(--c1SettingsI));
+        }
+    }
+
+    @keyframes rotatec2 {
+        0% {
+            transform: rotate(var(--c2SettingsI));
+        }
+        50% {
+            transform: rotate(calc(360deg + var(--c2SettingsI)));
+        }
+        100% {
+            transform: rotate(var(--c2SettingsI));
+        }
+    }
+
+    @keyframes rotatec3 {
+        0% {
+            transform: rotate(var(--c3SettingsI));
+        }
+        50% {
+            transform: rotate(calc(360deg + var(--c3SettingsI)));
+        }
+        100% {
+            transform: rotate(var(--c3SettingsI));
+        }
+    }
+</style>
